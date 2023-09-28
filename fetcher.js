@@ -1,14 +1,13 @@
 const request = require('request');
 const fs = require("fs");
 
+const URL = process.argv[2]
+const localPath = process.argv[3]
 
-request('http://www.example.edu', (error, response, body) => {
-  // console.log('error:', error); // Print the error if one occurred
-  // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  // console.log('body:', body); // Print the HTML for the Google homepage.
 
+request(`${URL}`, (error, response, body) => {
   const content = body;
-  fs.writeFile("./index.html", content, error => {
+  fs.writeFile(`${localPath}`, content, error => {
     if (error) {
       return;
     }
